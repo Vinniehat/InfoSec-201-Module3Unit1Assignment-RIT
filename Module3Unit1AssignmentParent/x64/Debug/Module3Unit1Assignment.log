@@ -1,0 +1,3 @@
+﻿  Source.c
+H:\Work\Development\School\Rochester Institute of Technology\InfoSec 201\Module3Unit1Assignment\Module3Unit1Assignment\Source.c(5,2): error C2065: 's': undeclared identifier
+H:\Work\Development\School\Rochester Institute of Technology\InfoSec 201\Module3Unit1Assignment\Module3Unit1Assignment\Source.c(6,1): error C2143: syntax error: missing ';' before '}'
