@@ -29,6 +29,16 @@ DWORD GetParentProcessID(DWORD processID)
 
 int main(void)
 {
+	// Variables to store start and end times
+	LARGE_INTEGER frequency, start, end;
+	double elapsedTime;
+
+	// Get the frequency of the high-resolution performance counter
+	QueryPerformanceFrequency(&frequency);
+
+	// Get the start time
+	QueryPerformanceCounter(&start);
+
 	// Get the current process ID
 	DWORD processID = GetCurrentProcessId();
 
@@ -39,10 +49,26 @@ int main(void)
 	printf("[CHILD]: Process ID: %lu\n", processID);
 	printf("[CHILD]: Parent Process ID: %lu\n", parentProcessID);
 
-	printf("[CHILD]: Child process is running...\n");
+	// printf("[CHILD]: Child process is running...\n");
 
-	Sleep(120000); // Sleep for 120 seconds (2 minutes)
-	printf("[CHILD]: Child process is done\n");
+	// Sleep(120000); // Sleep for 120 seconds (2 minutes)
+
+	// Loop 6 times @ 20 seconds each
+	for (int i = 0; i < 6; i++)
+    {
+        Sleep(20000); // Sleep for 20 seconds
+        printf("[CHILD]: Child process has woken up...\n");
+    }
+	printf("[CHILD]: Child process is done.\n");
+
+	// Get the end time
+	QueryPerformanceCounter(&end);
+
+	// Calculate the elapsed time in seconds with 6 decimal places of accuracy
+	elapsedTime = (double)(end.QuadPart - start.QuadPart) / frequency.QuadPart;
+
+	// Print the elapsed time
+	printf("Elapsed time: %.6f seconds\n", elapsedTime);
 
 	return 0;
 }
